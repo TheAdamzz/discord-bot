@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import os  # <- přidané pro načítání tokenu
 
 intents = discord.Intents.default()
 intents.reactions = True
@@ -171,7 +172,9 @@ async def on_raw_reaction_add(payload: discord.RawReactionActionEvent):
 
 
 # ------------------------
-# Spuštění bota
+# Spuštění bota přes environment variable
 # ------------------------
-bot.run("DISCORD_TOKEN")
+token = os.environ['DISCORD_TOKEN']
+bot.run(token)
+
 
